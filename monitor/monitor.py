@@ -1,5 +1,6 @@
 import json
 import search.connector.status_scraper as sc
+import search.connector.result_data as result_data
 
 with open('./search/settings/params.json', 'r') as json_file:
     params = json.load(json_file)
@@ -34,7 +35,7 @@ class Monitor:
         for job, value in self.job_list.items(): all_job_list += value
         # all_job_list = [job for job in params.keys() if job not in not_available_jobs]
 
-        self._result = connector.result_data.Result(all_job_list=all_job_list)
+        self._result = result_data.Result(all_job_list=all_job_list)
         self._scrapers = set_scrapers(self.job_list, self._result)
 
         for scraper in self._scrapers:
